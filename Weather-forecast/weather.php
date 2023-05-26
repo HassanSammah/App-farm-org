@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather-forecast</title>
+    <link rel="icon" type="image/x-icon" href="/Objects/Images/farm-logo-2.png" >
+    <link rel="stylesheet" href="/Bootstrap-5/css/bootstrap.min.css">
+    <script src="/Bootstrap-5/js/bootstrap.min.js" defer></script>
+    <style>
+        body {
+            background-image: url('/Objects/Images/farm-storm-clouds.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+        .logo {
+            max-width: 90px;
+        }
+
+        .navbar-nav .nav-link.btn:hover {
+            border: 2px solid #0758d1;
+            color: rgb(233, 231, 231);
+        }
+
+        .btn {
+            background-color: #198754;
+            border-color: #198754;
+        }
+
+        .btn:hover {
+            background-color: #0d6e3f;
+            border-color: #0d6e3f;
+        }
+
+        .farm-title img {
+            width: 80px;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-nav .nav-link {
+                font-size: 12px;
+                padding: 6px;
+            }
+
+            .navbar-nav {
+                float: right;
+            }
+
+            .farm-title {
+                width: 230px;
+                margin-left: -15px;
+            }
+
+            .logo img {
+                width: 80px;
+            }
+        }
+
+        .footer {
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 20px 0;
+        }
+
+        .copyright {
+            text-align: center;
+        }
+
+        .product-card {
+            background-color: rgba(230, 230, 230, 0.7);
+            /* Green theme with 50% opacity */
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .product-item {
+            margin-bottom: 10px;
+        }
+
+        .product-item img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .offer-duration {
+            font-weight: bold;
+            color: green;
+        }
+
+        .posted-date,
+        .price {
+            color: black;
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .activity-card {
+            background-color: rgba(230, 230, 230, 0.7);
+            /* Green theme with 50% opacity */
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .product-image {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            align-items: center;
+        }
+
+        .activity-item {
+            margin-bottom: 10px;
+        }
+
+        .activity-item img {
+            max-width: 300px;
+            height: auto;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .center-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgba(102, 187, 106, 0.5); /* Green theme with 50% opacity */
+        }
+
+        .green-theme {
+            background-color: #66bb6a;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .error-theme {
+            background-color: #e53935;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        html, body {
+        height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1 0 auto;
+        }
+        .weather-widget {
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 20px;
+        }
+
+        .weather-info h2 {
+        color: #333;
+        }
+
+        .weather-icon img {
+        max-width: 100px;
+        }
+/* Custom styles for weather display */
+.weather-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .weather-icon {
+            width: 100px;
+            height: 100px;
+        }
+
+    </style>
+</head>
+
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Farm-main/Home-Feed.php">
+                <img src="/Objects/Images/farm-logo-2.png" alt="Logo" class="logo">
+            </a>
+            <img src="/Objects/Images/farm-title.png" alt="Farm system title" class="farm-title">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav ms-auto flex-row ">
+                    <a class="nav-link btn btn-success text-white me-2 mb-sm-2" href="/Farm-main/Home-Feed.php">BACK HOME</a>
+                    <a class="nav-link btn btn-success text-white me-2 mb-sm-2" href="/Weather-forecast/seasons-and-climate.php">SEASONS & CLIMATE</a>
+                    <a class="nav-link btn btn-success text-white me-2 mb-sm-2" href="/Weather-forecast/forecast.php">FORECAST</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<br>
+<br>
+
+<div class="weather-widget">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="weather-info">
+          <h2 class="mb-4">With APIs FMIS Shows Today's Real Time weather</h2>
+          <div class="row">
+            <div class="col-6">
+              <h3 class="mb-3">All Parameters</h3>
+              <p class="mb-2">from Degrees(i.e 25°C)</p>
+              <p class="mb-2">to Conditions(i.e Sunny)</p>
+            </div>
+            <div class="col-6">
+              <h3 class="mb-3">Range of Weather</h3>
+              <p class="mb-2">Distance cover</p>
+              <p class="mb-2">Direction</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="weather-icon">
+          <img src="/Objects/Images/weather.png" alt="Weather Icon" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+<div class="container">
+        <div class="weather-container">
+            <h2>Current Weather</h2>
+            <div class="form-group">
+                <input type="text" class="form-control" id="city-input" placeholder="Enter city name">
+            </div>
+            <br>
+            <button class="btn btn-primary" onclick="getWeather()">Show Weather</button>
+            <div id="weather-data"></div>
+        </div>
+    </div>
+
+   
+
+    <br>
+    
+    <div class="container">
+    <div class="weather-container">
+        <h2>Historical Weather</h2>
+        <form id="weather-form" onsubmit="event.preventDefault(); getHistoricalWeather();">
+            <div class="form-group">
+                <input type="text" class="form-control" id="city-input" placeholder="Enter city name">
+            </div>
+            <div class="form-group">
+                <input type="date" class="form-control" id="start-date-input" placeholder="Start Date">
+            </div>
+            <div class="form-group">
+                <input type="date" class="form-control" id="end-date-input" placeholder="End Date">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Get Historical Weather</button>
+        </form>
+        <div id="weather-datas"></div>
+    </div>
+    </div>
+
+    <script>
+
+// Get the current weather data using PHP and JavaScript
+        // Replace YOUR_API_KEY with your actual Weatherbit API key
+        const apiKey = "02b56529736b45e3a0913c34392515bb";
+
+        function getWeather() {
+            const cityInput = document.getElementById("city-input");
+            const city = cityInput.value.trim();
+
+            if (city === "") {
+                alert("Please enter a city name.");
+                return;
+            }
+
+            // Build the API URL
+            const apiUrl = `https://api.weatherbit.io/v2.0/current?city=${encodeURIComponent(city)}&key=${apiKey}`;
+
+            // Make a request to the Weatherbit API using JavaScript
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Parse the weather data and display it
+                    const weatherData = data.data[0];
+                    const temperature = weatherData.temp;
+                    const description = weatherData.weather.description;
+                    const icon = weatherData.weather.icon;
+
+                    const weatherDiv = document.getElementById("weather-data");
+                    weatherDiv.innerHTML = `
+                        <img src="https://www.weatherbit.io/static/img/icons/${icon}.png" alt="${description}" class="weather-icon">
+                        <p>${temperature}°C</p>
+                        <p>${description}</p>
+                    `;
+                })
+                .catch(error => {
+                    console.log("An error occurred:", error);
+                    const weatherDiv = document.getElementById("weather-data");
+                    weatherDiv.innerHTML = "Error retrieving weather data.";
+                });
+        }
+
+       
+        function getHistoricalWeather() {
+        const cityInput = document.getElementById("city-input");
+        const startDateInput = document.getElementById("start-date-input");
+        const endDateInput = document.getElementById("end-date-input");
+
+        const city = cityInput.value.trim();
+        const startDate = startDateInput.value;
+        const endDate = endDateInput.value;
+
+        if (city === "" || startDate === "" || endDate === "") {
+            alert("Please enter a city name and select start/end dates.");
+            return;
+        }
+
+        const apiUrl = `https://api.weatherbit.io/v2.0/history/daily?key=${apiKey}&start_date=${startDate}&end_date=${endDate}&city=${encodeURIComponent(city)}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const weatherDatas = data.data;
+                let weatherHtml = "";
+
+                weatherDatas.forEach(weatherData => {
+                    const date = weatherData.datetime;
+                    const temperature = weatherData.temp;
+                    const description = weatherData.weather.description;
+                    const icon = weatherData.weather.icon;
+
+                    weatherHtml += `
+                        <div>
+                            <h3>${date}</h3>
+                            <img src="https://www.weatherbit.io/static/img/icons/${icon}.png" alt="${description}" class="weather-icon">
+                            <p>${temperature}°C</p>
+                            <p>${description}</p>
+                        </div>
+                    `;
+                });
+
+                const weatherDiv = document.getElementById("weather-datas");
+                weatherDiv.innerHTML = weatherHtml;
+            })
+            .catch(error => {
+                console.log("An error occurred:", error);
+                const weatherDiv = document.getElementById("weather-datas");
+                weatherDiv.innerHTML = "Error retrieving weather data.";
+            });
+    }
+    </script>
+
+
+
+
+
+<br>
+<br>
+<br>
+<footer class="footer mt-auto py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Contact Us</h5>
+          <p>Email: info@fmis.com</p>
+          <p>Phone: 0655328428</p>
+          <p>Address: FMIS TUDARco, Dar es salaam, Tanzania</p>
+        </div>
+        <div class="col-md-6">
+          <h5>Feedback</h5>
+          <form action="weather.php" method="POST">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name:</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" class="form-control" id="emailback" name="emailback" required>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message:</label>
+              <textarea class="form-control" id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-light" name="submit" >Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container text-center">
+        <span>&copy; <?php echo date("Y"); ?> Farm Organization. All rights reserved.</span>
+    </div>
+    <div class="copyright">
+      &copy; COPYRIGHT - 2023    
+    </div>
+  </footer>
+
+<?php
+// Establish a connection to the database
+$servername = "localhost";
+$username = "root"; // Replace with your XAMPP database username
+$password = ""; // Replace with your XAMPP database password
+$dbname = "fmis";
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+
+
+// Check if the feedback form is submitted
+if (isset($_POST['submit'])) {
+    // Validate and sanitize the form data
+    $name = isset($_POST['name']) ? $_POST['name'] : '';
+    $emailback = isset($_POST['emailback']) ? $_POST['emailback'] : '';
+    $message = isset($_POST['message']) ? $_POST['message'] : '';
+
+    // Insert the data into the database
+    $sql = "INSERT INTO feedback (name, emailback, message) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $name, $emailback, $message);
+
+    if ($stmt->execute()) {
+        // Feedback submitted successfully
+        echo "<div id='success-message' class='center-box'>
+              <div class='green-theme'>
+                  <h2>Feedback Submitted</h2>
+                  <p>Thank you for your feedback!</p>
+              </div>
+          </div>";
+        // Redirect to the desired page or display a success message
+    } else {
+        // Error occurred while executing the query
+        echo "Error: " . $stmt->error;
+        // Handle the error appropriately
+    }
+    
+
+    $stmt->close();
+}
+
+$conn->close();
+
+//it still give this error "Error: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)"
+?>
+
+</body>
+
+</html>

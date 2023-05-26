@@ -1,0 +1,20 @@
+[
+    {
+      "farmer": "Daniel Mwita",
+      "amount": 10000,
+      "start_date": "2023-01-01",
+      "end_date": "2023-12-31"
+    },
+    {
+      "farmer": "Juma Mdoe",
+      "amount": 5000,
+      "start_date": "2023-02-01",
+      "end_date": "2023-11-30"
+    },
+    {
+      "farmer": "Bibi Moses",
+      "amount": 2000,
+      "start_date": "2023-03-01",
+      "end_date": "2023-10-31"
+    }
+  ]

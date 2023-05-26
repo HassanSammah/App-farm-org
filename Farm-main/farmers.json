@@ -1,0 +1,26 @@
+[
+    {
+      "name": "Bibi Moses",
+      "years": ["2022", "2023"],
+      "cashFlow": [10000, 20000],
+      "loan": 5000,
+      "support": 2000,
+      "profit": 3000
+    },
+    {
+      "name": "Juma Mdoe",
+      "years": ["2022", "2023"],
+      "cashFlow": [5000, 10000],
+      "loan": 2000,
+      "support": 1000,
+      "profit": 1000
+    },
+    {
+      "name": "Daniel Mwita",
+      "years": ["2022", "2023"],
+      "cashFlow": [2000, 5000],
+      "loan": 1000,
+      "support": 500,
+      "profit": 500
+    }
+  ]
