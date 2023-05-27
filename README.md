@@ -1,4 +1,5 @@
-<img src="Objects/Images/farm-logo-2.png" alt="FMIS LOGO" style="width:300px;height:200px;">
+<img src="Objects/Images/farm-logo-2.png" alt="FMIS LOGO" style="width:300px;height:300px;">
+
 # App-farm-org
 
 ## FMIS - Farm management information System
